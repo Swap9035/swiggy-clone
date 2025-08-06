@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import Header from "./Common/Header";
+import { useEffect, useState } from "react";
 
 function App() {
-  return (
+   
+  const [restaurants,setRestaurants] = useState([]);
+    const [cartItems,setCartItems] = useState([]);
+      const [loading,setLoading] = useState(true);
+
+      useEffect(() => {
+        const fetchrestaurants = async () =>{
+          try{
+            const response = await fetch("http://localhost:3000/Restaurant.json");
+           if(response.ok){
+            const data = await response.json();
+            setRestaurants(data);
+           }
+          }
+          catch(err) {}
+            
+          };
+          fetchrestaurants();
+        },[]);
+     useEffect(()=>console.log(restaurants),[restaurants])
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Shared layout or header can go here */}
+      <Outlet context={
+        { restaurants}
+      
+      }></Outlet>
+      <Header></Header>
     </div>
-  );
+  );  
 }
 
 export default App;
