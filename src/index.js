@@ -38,7 +38,7 @@ const urls = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "restaurant",
+        path: "restaurant/:resId",
         element: <Restaurant />,
       },
       {

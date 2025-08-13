@@ -14,7 +14,7 @@ const Home = () => {
       </h2>
       <div className="home__card-container">
         {restaurants.map((res) => {
-          return <Card show={true} res={res.info }></Card>;
+          return <Card  key={res.info.id} show={true} res={res.info}></Card>;
         })}
       </div>
     </div>
@@ -22,3 +22,4 @@ const Home = () => {
 };
 
 export default Home;
+  

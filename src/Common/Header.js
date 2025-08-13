@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import './Header.css';
-const Header = () => {
+import '../App.css';
+const Header = ({cartItems}) => {
   return (
     <div className="header">
       <div className="header__logo-container">
@@ -26,12 +26,15 @@ const Header = () => {
           <li>
             <NavLink to={"/cart"}>
               Cart
+              {cartItems.length >=1 && 
+                <span className="cartItemCount">{cartItems.reduce((total, item) => total + item.quantity, 0)}</span>
+              }
             </NavLink>
           </li>
         </ul>
       </div>
     </div>
-  );
+  ); 
 };
 export default Header;
 

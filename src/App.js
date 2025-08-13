@@ -24,15 +24,57 @@ function App() {
           };
           fetchrestaurants();
         },[]);
-     useEffect(()=>console.log(restaurants),[restaurants])
-    return (
+     // Adding item tto a cart
+      const addItem =(item)=>{
+        const existingIndex=cartItems.findIndex(
+          (cartItems)=> cartItems.id == item.id
+        );
+        if(existingIndex != -1){
+          const updateCart =[...cartItems];
+          updateCart[existingIndex].quantity +=1;
+          setCartItems(updateCart);
+        }else{
+          setCartItems([...cartItems,{...item,quantity:1}])
+        }
+      }
+      // Remove item
+
+      const removeItem=(item)=>{
+        const existingIndex=cartItems.findIndex(
+          (cartItems)=> cartItems.id == item.id
+        );
+        if(existingIndex != -1){
+          const updateCart =[...cartItems];
+          if(updateCart[existingIndex].quantity>1){
+          updateCart[existingIndex].quantity -=1;
+          }else{
+            updateCart.splice(existingIndex,1);
+          }
+          setCartItems(updateCart);
+        }
+      
+        };
+        // Clear cart
+        const clearCart =()=>{
+          setCartItems([]);
+        }
+
+    //  useEffect(()=>console.log(restaurants),[restaurants])
+     return (
     <div className="App">
       {/* Shared layout or header can go here */}
       <Outlet context={
-        { restaurants}
+        { restaurants,
+          addItem,
+          setCartItems,
+          cartItems,
+          removeItem,
+          clearCart,
+          setRestaurants,
+        }
       
       }></Outlet>
-      <Header></Header>
+      <Header cartItems={cartItems}></Header>
     </div>
   );  
 }
