@@ -24,7 +24,7 @@ function App() {
           };
           fetchrestaurants();
         },[]);
-     // Adding item tto a cart
+     // Adding item to a cart
       const addItem =(item)=>{
         const existingIndex=cartItems.findIndex(
           (cartItems)=> cartItems.id == item.id

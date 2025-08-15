@@ -1,4 +1,6 @@
-const AccountSection = ()=>{
+import PayWithPayPal from "../Components/PayWithPayPal";
+import { PayPalButtons } from "@paypal/react-paypal-js";
+const AccountsSection = ({totalPrice})=>{
     return(
         <div className="account">
             <div className="account__items">
@@ -34,9 +36,8 @@ const AccountSection = ()=>{
             <h3>Payment</h3>
                <p>To place an order now , log in to your existing account or sign up</p>
                <div>
-                <button>Pay Now</button>
+                <PayWithPayPal totalPrice={totalPrice} />
                </div>
-
 
         </div>
     </div>
@@ -46,4 +47,4 @@ const AccountSection = ()=>{
 
     );
 };
-export default AccountSection;
+export default AccountsSection;

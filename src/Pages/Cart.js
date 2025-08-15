@@ -3,6 +3,11 @@ import "./../Style/cart.css";
 import EmptyCart from "../Components/EmptyCart";
 import CartItems from "../Components/CartItems";
 import { useEffect, useState } from "react";
+// import AccountsSection from "../Components/AccountsSection";
+import PaywithPayPal from "../Components/PayWithPayPal";
+
+
+
 
 const Cart = () => {
   const { cartItems, addItem, removeItem } = useOutletContext();
@@ -21,10 +26,13 @@ const Cart = () => {
       {cartItems.length === 0 ? (
       <EmptyCart></EmptyCart>
       ) : (
-       <CartItems cartItems={cartItems} addItem={addItem} removeItem={removeItem} totalPrice={totalPrice}></CartItems>
+       <CartItems cartItems={cartItems} addItem={addItem} removeItem={removeItem} totalPrice={totalPrice}>
+          <PaywithPayPal totalPrice={totalPrice} ></PaywithPayPal>
+       </CartItems>
       )}
+
     </div>
   );
 };
 
-export default Cart;
+export default Cart; 

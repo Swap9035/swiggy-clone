@@ -11,6 +11,7 @@ import Search from "./Pages/Search";
 import Restaurant from "./Pages/Restaurant";
 import Cart from "./Pages/Cart";
 import PageNotFound from "./Pages/PageNotFound";
+import PayPalWrapper from "./PayPalWrapper";
 
 const urls = createBrowserRouter([
   {
@@ -52,8 +53,11 @@ const urls = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <PayPalWrapper>
     <RouterProvider router={urls} />
+    </PayPalWrapper>
   </React.StrictMode>
+
 );
                                                                                   
 reportWebVitals();
