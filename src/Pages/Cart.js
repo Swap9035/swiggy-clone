@@ -1,38 +1,81 @@
+// import { useOutletContext } from "react-router-dom";
+// import "./../Style/cart.css";
+// import EmptyCart from "../Components/EmptyCart";
+// import CartItems from "../Components/CartItems";
+// import { useEffect, useState } from "react";
+// // import AccountsSection from "../Components/AccountsSection";
+// import PaywithPayPal from "../Components/PayWithPayPal";
+
+
+
+
+// const Cart = () => {
+//   const { cartItems, addItem, removeItem } = useOutletContext();
+//   const[totalPrice,setTotalPrice]=useState(0);
+//   useEffect(()=>{
+//     let total= 0;
+//     cartItems.forEach((item) => {
+//       total+=item.quantity * item.defaultPrice;
+      
+//     });
+//     setTotalPrice(total/100);
+
+//   },[cartItems]);
+//   return (
+//     <div className="cart">
+//       {cartItems.length === 0 ? (
+//       <EmptyCart></EmptyCart>
+//       ) : (
+//        <CartItems cartItems={cartItems} addItem={addItem} removeItem={removeItem} totalPrice={totalPrice}>
+//           <PaywithPayPal totalPrice={totalPrice} ></PaywithPayPal>
+//        </CartItems>
+//       )}
+
+//     </div>
+//   );
+// };
+
+// export default Cart; 
 import { useOutletContext } from "react-router-dom";
 import "./../Style/cart.css";
 import EmptyCart from "../Components/EmptyCart";
 import CartItems from "../Components/CartItems";
 import { useEffect, useState } from "react";
-// import AccountsSection from "../Components/AccountsSection";
 import PaywithPayPal from "../Components/PayWithPayPal";
-
-
-
 
 const Cart = () => {
   const { cartItems, addItem, removeItem } = useOutletContext();
-  const[totalPrice,setTotalPrice]=useState(0);
-  useEffect(()=>{
-    let total= 0;
-    cartItems.forEach((item) => {
-      total+=item.quantity * item.defaultPrice;
-      
-    });
-    setTotalPrice(total/100);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  },[cartItems]);
+  useEffect(() => {
+    let total = 0;
+    cartItems.forEach((item) => {
+      total += item.quantity * (item.defaultPrice || item.price || 0);
+    });
+    setTotalPrice(total / 100); // Convert paise to rupees, if prices are in paise
+  }, [cartItems]);
+
   return (
     <div className="cart">
       {cartItems.length === 0 ? (
-      <EmptyCart></EmptyCart>
+        <EmptyCart />
       ) : (
-       <CartItems cartItems={cartItems} addItem={addItem} removeItem={removeItem} totalPrice={totalPrice}>
-          <PaywithPayPal totalPrice={totalPrice} ></PaywithPayPal>
-       </CartItems>
+        <>
+          <CartItems
+            cartItems={cartItems}
+            addItem={addItem}
+            removeItem={removeItem}
+            totalPrice={totalPrice}
+          />
+          {/* PayPal payment button */}
+          <div className="cart__payment" style={{ marginTop: '2rem' }}>
+            {/* <h3>Pay with PayPal</h3> */}
+            <PaywithPayPal amount={totalPrice} />
+          </div>
+        </>
       )}
-
     </div>
   );
 };
 
-export default Cart; 
+export default Cart;

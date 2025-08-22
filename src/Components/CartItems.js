@@ -11,8 +11,7 @@ const CartItems = ({cartItems, removeItem, addItem, totalPrice}) => {
           </div>
           <div className="cart-items__scrollable-content">
             {cartItems.map((r) => (
-              <div className="cart-items__added-item">
-                <p>{r.name}</p>
+              <div className="cart-items__added-item" key={r.id || r.name} >
                 <div className="cart-items__button-container">
                   <button
                     onClick={() => {

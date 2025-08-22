@@ -5,7 +5,7 @@ export default function PayPalWrapper({ children }) {
   return (
     <PayPalScriptProvider
       options={{
-        "client-id": "ARU7j1Qg-HnPzMUZwV7381v7oBWJJ3o871u0dJ9f__ScxjYL5WDs-sA4O2FCno0IuhfYKlElfIHA3sjT", // From PayPal Developer Dashboard
+        "client-id": "AUGwT1CDi4dodiFaAkmDzfOXSM1j_V8Qrq3Mq55k5spQHYhhjgMzlr2HYTeu7LAUM-Na0aSfNhbGlv3w", // From PayPal Developer Dashboard
         currency: "USD",
         intent: "CAPTURE"
       }}

@@ -36,7 +36,7 @@ const Restaurant = () => {
         <div className="restaurant__menu">
           {menu.map((res) => {
             const title = res?.card?.card.title;
-            return <MenuItem res={res} addItem={addItem} removeItem={removeItem} cartItems={cartItems}></MenuItem>;
+            return <MenuItem  res={res} addItem={addItem} removeItem={removeItem} cartItems={cartItems}></MenuItem>;
           })}
         </div>
       </div>
